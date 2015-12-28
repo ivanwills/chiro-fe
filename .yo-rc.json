@@ -1,0 +1,69 @@
+{
+  "generator-ractive-foundation": {
+    "paths": {
+      "base": "./src",
+      "components": "./src/components/",
+      "widgets": "./src/widgets/",
+      "partials": "./src/partials/",
+      "public": "./public",
+      "publicJs": "./public/js",
+      "vendors": "./public/vendors",
+      "compiled": "./public/compiled",
+      "compiledWidgets": "./public/compiled/widgets"
+    },
+    "globs": {
+      "tests": "./src/widgets/**/tests/*.*",
+      "partials": "./src/partials/**/*.hbs",
+      "componentsScss": "./src/components/**/*.scss",
+      "scss": "./src/scss/*.scss",
+      "templates": "./src/*.html",
+      "componentsJs": [
+        "./src/components/**/*.js",
+        "!./src/components/**/*.steps.js"
+      ],
+      "componentsHbs": [
+        "./src/components/**/*.hbs",
+        "!./src/components/**/use-cases/*.hbs"
+      ],
+      "componentsJson": "components/**/use-cases/*.json",
+      "manifests": [
+        "./src/components/**/manifest.json",
+        "./node_modules/ractive-foundation/src/components/**/manifest.json"
+      ],
+      "srcJavaScript": [
+        "./src/core/**/*.js",
+        "./src/plugins/**/*.js",
+        "./src/support/**/*.js",
+        "./src/widgets/**/*.js",
+        "./src/components/**/*.js",
+        "./src/js/**/*.js",
+        "./generator/**/*.js",
+        "./tasks/**/*.js",
+        "./test/**/*.js",
+        "./tests/**/*.js",
+        "./server.js",
+        "./gulpfile.js"
+      ],
+      "jshint": [
+        "./src/core/**/*.js",
+        "./src/plugins/**/*.js",
+        "./src/support/**/*.js",
+        "./src/widgets/**/*.js",
+        "./generator/**/*.js",
+        "./tasks/**/*.js",
+        "./test/**/*.js",
+        "./tests/**/*.js",
+        "./server.js",
+        "./gulpfile.js",
+        "!src/plugins/ractiveTap.js"
+      ],
+      "vendorsJs": "./src/vendors/**/*.js",
+      "widgets": "./src/widgets/**/*.*",
+      "widgetsJs": "./src/widgets/**/javascript/*.js",
+      "widgetsScss": "./src/widgets/**/stylesheets/*.scss",
+      "widgetsTpl": "./src/widgets/**/hbs/*.hbs",
+      "widgetsFeatures": "./src/widgets/**/test/*.feature"
+    },
+    "port": 7332
+  }
+}
