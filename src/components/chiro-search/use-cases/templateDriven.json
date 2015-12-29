@@ -1,0 +1,6 @@
+{
+	"title": "Use case with custom attributes",
+	"template": "chiro-search-templateDriven",
+	"file": "src/components/chiro-search/use-cases/templateDriven.hbs",
+	"data": {}
+}
