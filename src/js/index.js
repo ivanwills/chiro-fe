@@ -1,20 +1,21 @@
 /* globals Ractive, _ */
 
 (function() {
-	var options = {};
-	options.el = document.querySelector('#container');
-	options.template = Ractive.partials.base;
-	options.data = {
-		events: true
-	};
+    var options = {};
+    options.el = document.querySelector('#container');
+    options.template = Ractive.partials.base;
+    options.data = {
+        term: '',
+        events: true
+    };
 
-	_.extend(options.components, Ractive.components);
-	_.extend(options.computed, {
-	});
+    _.extend(options.components, Ractive.components);
+    _.extend(options.computed, {
+    });
 
-	var ractive = new Ractive(options);
+    var ractive = new Ractive(options);
 
-	ractive.on('thing', function(evt) {
-	});
+    ractive.on('thing', function(evt) {
+    });
 
 })();
