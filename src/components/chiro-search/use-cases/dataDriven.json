@@ -2,6 +2,7 @@
 	"title": "Data driven use case",
 	"isDataModel": true,
 	"data": {
-		"title": "Search"
+		"title": "Search",
+		"value": ""
 	}
 }
