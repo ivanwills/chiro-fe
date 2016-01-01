@@ -1,6 +1,6 @@
 {
-  "name": "package",
-  "version": "0.0.0",
+  "name": "chrome",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "test": "npm prune && npm install && gulp test",
