@@ -236,7 +236,7 @@ gulp.task('build-documentation', function () {
 		}))
 		.pipe(plugins.header(headerHtml, { pkg: pkg }))
 		.pipe(plugins.footer(footerHtml))
-		.pipe(gulp.dest('./public/')),
+		.pipe(gulp.dest('./public/components/')),
 
 		// Documentation pages.
 		gulp.src([ './src/pages/*.html' ])
