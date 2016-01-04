@@ -1,10 +1,11 @@
 {
 	"data": {
-		"text": "The text to display on the chiro-field component",
-		"url": "The link to follow when the component is clicked"
+		"value": "Initial value (if any)",
+		"name": "The name of the field",
+		"id": "The of the field"
 	},
 	"events": {
 		"onclick": "Event to fire when component is clicked"
 	},
-	"category": "uncategorised"
+	"category": "Chiro"
 }
