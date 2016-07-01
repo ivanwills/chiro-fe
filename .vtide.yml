@@ -1,0 +1,64 @@
+---
+count: 12
+default:
+  env:
+    MANPATH: /home/ivan/.nvm/versions/v0.12.7/share/man:/home/ivan/.nvm/versions/v0.12.7/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man:/home/ivan/.rvm/man
+    NVM_BIN: /home/ivan/.nvm/versions/v0.12.7/bin
+    NVM_PATH: /home/ivan/.nvm/versions/v0.12.7/lib/node
+    PATH: /home/ivan/.nvm/versions/v0.12.7/bin:./node_modules/.bin:$PATH
+  restart: 0
+  wait: 0
+editor:
+  helper: |
+    sub {
+      my ($self, $group) = @_;
+      if ($group =~ /^ux-/) {
+        my ($component, $type) = $group =~ /^(ux-.*?)(?:-(all|test|docs))?$/;
+        my $dir = "framework/components/$component";
+        return !$type     ? ("$dir/$component.js", "$dir/$component.hbs", "$dir/$component*.scss")
+          : $type eq 'all'  ? ("$dir/*.*", "$dir/use-cases/*")
+          : $type eq 'test' ? ("$dir/$component.feature", "$dir/$component.step.js", "$dir/use-cases/*")
+          : $type eq 'docs' ? ("$dir/README.md", "$dir/manifest.json")
+          :                   die "Unknown type '$type'!\n";
+      }
+      return ();
+    }
+  files:
+    base:
+      - src/index.html
+      - src/partials/base.hbs
+      - src/js/index.js
+      - src/scss/base.scss
+    field:
+      - src/components/chiro-field/chiro-field.hbs
+      - src/components/chiro-field/chiro-field.js
+      - src/components/chiro-field/chiro-field.scss
+      - src/components/chiro-field/README.md
+      - src/components/chiro-field/manifest.json
+      - src/components/chiro-field/chiro-field.feature
+      - src/components/chiro-field/chiro-field.steps.js
+      - src/components/chiro-field/use-cases/customAtributes.json
+      - src/components/chiro-field/use-cases/dataDriven.json
+      - src/components/chiro-field/use-cases/templateDriven.hbs
+      - src/components/chiro-field/use-cases/templateDriven.json
+    search:
+      - src/components/chiro-search/chiro-search.hbs
+      - src/components/chiro-search/chiro-search.js
+      - src/components/chiro-search/chiro-search.scss
+      - src/components/chiro-search/README.md
+      - src/components/chiro-search/manifest.json
+      - src/components/chiro-search/chiro-search.feature
+      - src/components/chiro-search/chiro-search.steps.js
+      - src/components/chiro-search/use-cases/customAtributes.json
+      - src/components/chiro-search/use-cases/dataDriven.json
+      - src/components/chiro-search/use-cases/templateDriven.hbs
+      - src/components/chiro-search/use-cases/templateDriven.json
+name: chiro-fe
+terminals:
+terminals:
+  1a:
+    restart: bash
+    default: r
+    restart: 1
+    wait: 0
+    command: node --version && gulp
