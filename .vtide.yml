@@ -7,7 +7,25 @@ default:
     NVM_PATH: /home/ivan/.nvm/versions/v0.12.7/lib/node
     PATH: /home/ivan/.nvm/versions/v0.12.7/bin:./node_modules/.bin:$PATH
   restart: 0
-  wait: 0
+  wait: 1
+name: chiro-fe
+terminals:
+  1a:
+    restart: bash
+    default: r
+    restart: 1
+    wait: 0
+    command:
+      - plackup
+      - -p
+      - 3030
+      - ./chiro.psgi
+  1b:
+    restart: bash
+    default: r
+    restart: 1
+    wait: 0
+    command: node --version && gulp
 editor:
   helper: |
     sub {
@@ -29,36 +47,25 @@ editor:
       - src/partials/base.hbs
       - src/js/index.js
       - src/scss/base.scss
-    field:
-      - src/components/chiro-field/chiro-field.hbs
-      - src/components/chiro-field/chiro-field.js
-      - src/components/chiro-field/chiro-field.scss
-      - src/components/chiro-field/README.md
-      - src/components/chiro-field/manifest.json
-      - src/components/chiro-field/chiro-field.feature
-      - src/components/chiro-field/chiro-field.steps.js
-      - src/components/chiro-field/use-cases/customAtributes.json
-      - src/components/chiro-field/use-cases/dataDriven.json
-      - src/components/chiro-field/use-cases/templateDriven.hbs
-      - src/components/chiro-field/use-cases/templateDriven.json
-    search:
-      - src/components/chiro-search/chiro-search.hbs
-      - src/components/chiro-search/chiro-search.js
-      - src/components/chiro-search/chiro-search.scss
-      - src/components/chiro-search/README.md
-      - src/components/chiro-search/manifest.json
-      - src/components/chiro-search/chiro-search.feature
-      - src/components/chiro-search/chiro-search.steps.js
-      - src/components/chiro-search/use-cases/customAtributes.json
-      - src/components/chiro-search/use-cases/dataDriven.json
-      - src/components/chiro-search/use-cases/templateDriven.hbs
-      - src/components/chiro-search/use-cases/templateDriven.json
-name: chiro-fe
-terminals:
-terminals:
-  1a:
-    restart: bash
-    default: r
-    restart: 1
-    wait: 0
-    command: node --version && gulp
+    perl:
+      - lib/Chiro/View/JSON.pm
+      - lib/Chiro.pm
+      - lib/Chiro/Controller/Root.pm
+    db:
+      - lib/Chiro/Schema.pm
+      - lib/Chiro/Schema/Result/Condition.pm
+      - lib/Chiro/Schema/Result/Aka.pm
+    db-1:
+      - lib/Chiro/Schema/Result/Activity.pm
+      - lib/Chiro/Schema/Result/ConditionActivity.pm
+      - lib/Chiro/Schema/Result/RegionLay.pm
+      - lib/Chiro/Schema/Result/ConditionRegionLay.pm
+      - lib/Chiro/Schema/Result/Sign.pm
+      - lib/Chiro/Schema/Result/ConditionSign.pm
+    db-2:
+      - lib/Chiro/Schema/Result/Symptom.pm
+      - lib/Chiro/Schema/Result/ConditionSymptom.pm
+      - lib/Chiro/Schema/Result/Test.pm
+      - lib/Chiro/Schema/Result/ConditionTest.pm
+      - lib/Chiro/Schema/Result/Treatment.pm
+      - lib/Chiro/Schema/Result/ConditionTreatment.pm
