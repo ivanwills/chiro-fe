@@ -23,7 +23,7 @@ __PACKAGE__->add_columns(
         data_type         => 'integer',
         is_auto_increment => 1,
         is_nullable       => 0,
-        sequence          => 'groups_id_seq',
+        sequence          => 'activity_id_seq',
     },
     activity => {
         data_type   => 'varchar',
@@ -51,7 +51,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('activity_id');
 
 __PACKAGE__->add_unique_constraint(
-    group_name => ['activity']
+    activity_uniq => ['activity']
 );
 
 __PACKAGE__->meta->make_immutable;

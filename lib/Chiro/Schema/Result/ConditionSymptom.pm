@@ -16,14 +16,14 @@ extends 'DBIx::Class::Core';
 
 our $VERSION = version->new('0.0.1');
 
-__PACKAGE__->table('groups');
+__PACKAGE__->table('condition_symptom');
 
 __PACKAGE__->add_columns(
     condition_symptom_id => {
         data_type         => 'integer',
         is_auto_increment => 1,
         is_nullable       => 0,
-        sequence          => 'groups_id_seq',
+        sequence          => 'condition_symptom_id_seq',
     },
     name => {
         data_type   => 'varchar',
@@ -59,10 +59,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('condition_symptom_id');
-
-__PACKAGE__->add_unique_constraint(
-    group_name => ['name']
-);
 
 __PACKAGE__->meta->make_immutable;
 

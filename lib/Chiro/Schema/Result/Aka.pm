@@ -16,14 +16,14 @@ extends 'DBIx::Class::Core';
 
 our $VERSION = version->new('0.0.1');
 
-__PACKAGE__->table('groups');
+__PACKAGE__->table('aka');
 
 __PACKAGE__->add_columns(
     aka_id => {
         data_type         => 'integer',
         is_auto_increment => 1,
         is_nullable       => 0,
-        sequence          => 'groups_id_seq',
+        sequence          => 'aka_id_seq',
     },
     aka => {
         data_type   => 'varchar',
@@ -55,14 +55,10 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('aka_id');
 
-__PACKAGE__->add_unique_constraint(
-    group_name => ['name']
-);
-
 __PACKAGE__->belongs_to(
-    group_id => 'Chiro::Schema::Result::Group',
+    condition_id => 'Chiro::Schema::Result::Condition',
     {
-        chiro_id => 'chiro_id',
+        condition_id => 'condition_id',
     },
     {
         is_deferrable => 0,

@@ -16,16 +16,16 @@ extends 'DBIx::Class::Core';
 
 our $VERSION = version->new('0.0.1');
 
-__PACKAGE__->table('groups');
+__PACKAGE__->table('treatment');
 
 __PACKAGE__->add_columns(
     treatment_id => {
         data_type         => 'integer',
         is_auto_increment => 1,
         is_nullable       => 0,
-        sequence          => 'groups_id_seq',
+        sequence          => 'treatment_id_seq',
     },
-    name => {
+    treatment => {
         data_type   => 'varchar',
         is_nullable => 0,
         size        => 1024,
@@ -51,7 +51,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('treatment_id');
 
 __PACKAGE__->add_unique_constraint(
-    group_name => ['name']
+    treatment_uniq => ['treatment']
 );
 
 __PACKAGE__->meta->make_immutable;
