@@ -11,10 +11,10 @@
     },
     "globs": {
       "testTemplates": [
-          "./src/components/**/use-cases/*.hbs",
-          "./src/plugins/**/use-cases/*.hbs",
-          "./node_modules/ractive-foundationsrc/components/**/use-cases/*.hbs",
-          "./node_modules/ractive-foundationsrc/plugins/**/use-cases/*.hbs"
+        "./src/components/**/use-cases/*.hbs",
+        "./src/plugins/**/use-cases/*.hbs",
+        "./node_modules/ractive-foundationsrc/components/**/use-cases/*.hbs",
+        "./node_modules/ractive-foundationsrc/plugins/**/use-cases/*.hbs"
       ],
       "partials": "./src/partials/**/*.hbs",
       "componentsScss": "./src/components/**/*.scss",
@@ -60,6 +60,54 @@
       ],
       "vendorsJs": "./src/vendors/**/*.js"
     },
-    "port": 7332
+    "port": 7332,
+    "appname": "chiro",
+    "menu": {
+      "expandedState": "",
+      "leftItems": [
+        {
+          "label": "Learn More"
+        },
+        {
+          "href": "/",
+          "label": "Home"
+        },
+        {
+          "href": "/components/components.html",
+          "label": "Components"
+        },
+        {
+          "href": "data.html",
+          "label": "Data"
+        },
+        {
+          "href": "demo.html",
+          "label": "Demo"
+        },
+        {
+          "label": "External Links"
+        },
+        {
+          "href": "http://foundation.zurb.com/docs/",
+          "label": "Foundation docs",
+          "target": "_blank"
+        },
+        {
+          "href": "http://docs.ractivejs.org/latest/get-started",
+          "label": "RactiveJS docs",
+          "target": "_blank"
+        },
+        {
+          "href": "http://github.com/ractive-foundation/ractive-foundation",
+          "label": "Ractive-Froundation",
+          "target": "_blank"
+        },
+        {
+          "href": "http://github.com/ractive-foundation/generator-ractive-foundation",
+          "label": "Yeoman generator for RF",
+          "target": "_blank"
+        }
+      ]
+    }
   }
 }
