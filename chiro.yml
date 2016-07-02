@@ -1,2 +1,14 @@
 ---
 name: Chiro
+
+Model::DB:
+  connect_info:
+    dsn: dbi:Pg:dbname=chiro
+    user: ''
+    password: ''
+
+Data::Context::BEM:
+  path : dc/
+  fallback : true
+  Template:
+    INCLUDE_PATH: templates/
