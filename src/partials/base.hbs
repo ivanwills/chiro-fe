@@ -1,8 +1,13 @@
 <ux-row>
-    <ux-col>
-        <h1>chiro fe</h1>
-        <p>
-            <chiro-search title="search" value="{{{term}}}" />
-        </p>
-    </ux-col>
+    <chiro-header />
+</ux-row>
+<ux-row>
+    {{#if condition}}
+        <chiro-condition name="{{condition}}" />
+    {{else}}
+        <chiro-condition new="true" />
+    {{/if}}
+</ux-row>
+<ux-row>
+    <chiro-footer />
 </ux-row>

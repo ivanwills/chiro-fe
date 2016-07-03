@@ -1,4 +1,8 @@
-<div class="chiro-search">
-    <span>{{title}}</span>
-    <input type="text" value="{{value}}" placeholder="thing" />
+<div class="chiro-search columns large-5">
+    <input type="text"
+        value="{{value}}"
+        placeholder="condition"
+        on-keypress="search"
+        on-blur="search"
+    />
 </div>

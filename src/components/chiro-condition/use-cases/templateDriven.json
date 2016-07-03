@@ -1,0 +1,6 @@
+{
+	"title": "Use case via template",
+	"template": "chiro-condition-templateDriven",
+	"file": "src/components/chiro-condition/use-cases/templateDriven.hbs",
+	"data": {}
+}

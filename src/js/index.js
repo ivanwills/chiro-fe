@@ -15,7 +15,8 @@
 
     var ractive = new Ractive(options);
 
-    ractive.on('thing', function(evt) {
+    ractive.on('*.condition', function(evt) {
+        console.log(evt);
     });
 
 })();

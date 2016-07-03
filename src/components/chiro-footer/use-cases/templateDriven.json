@@ -1,0 +1,6 @@
+{
+	"title": "Use case via template",
+	"template": "chiro-footer-templateDriven",
+	"file": "src/components/chiro-footer/use-cases/templateDriven.hbs",
+	"data": {}
+}
