@@ -25,20 +25,75 @@ __PACKAGE__->add_columns(
         is_nullable       => 0,
         sequence          => 'condition_id_seq',
     },
-    name => {
+    condition => {
         data_type   => 'varchar',
         is_nullable => 0,
         size        => 1024,
     },
-    condition_id => {
-        data_type      => 'integer',
-        is_foreign_key => 1,
-        is_nullable    => 0,
+    clasification_type => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
     },
-    condition_id => {
-        data_type      => 'integer',
-        is_foreign_key => 1,
-        is_nullable    => 0,
+    clasification_sub_type => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    condition_desc => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    grouping => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    age => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    gender => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    demographics => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    chiro => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    ddx => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    etiology => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    mechanism => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    comorbid => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
+    },
+    condition_description_source => {
+        data_type   => 'varchar',
+        is_nullable => 1,
+        size        => 1024,
     },
     created => {
         data_type     => 'timestamp with time zone',
@@ -61,7 +116,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('condition_id');
 
 __PACKAGE__->add_unique_constraint(
-    condition_name => ['name']
+    condition_name => ['condition']
 );
 
 __PACKAGE__->meta->make_immutable;
