@@ -30,9 +30,9 @@ editor:
   helper: |
     sub {
       my ($self, $group) = @_;
-      if ($group =~ /^ux-/) {
-        my ($component, $type) = $group =~ /^(ux-.*?)(?:-(all|test|docs))?$/;
-        my $dir = "framework/components/$component";
+      if ($group =~ /^chiro-/) {
+        my ($component, $type) = $group =~ /^(chiro-.*?)(?:-(all|test|docs))?$/;
+        my $dir = "src/components/$component";
         return !$type     ? ("$dir/$component.js", "$dir/$component.hbs", "$dir/$component*.scss")
           : $type eq 'all'  ? ("$dir/*.*", "$dir/use-cases/*")
           : $type eq 'test' ? ("$dir/$component.feature", "$dir/$component.step.js", "$dir/use-cases/*")
