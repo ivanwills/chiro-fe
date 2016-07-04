@@ -14,18 +14,15 @@ our $VERSION = version->new('0.0.1');
 
 sub conditions {
     my ($self) = @_;
-    my $rs   = $self->resultset->search({}, {order_by => 'name'});
+    my $rs   = $self->resultset->search({}, {order_by => 'condition'});
     my $json = [];
 
     while (my $row = $rs->next) {
         push @$json, {
-            %{
-                $row->json
-                #followers => $row->id->
-            },
-            id       => $row->id,
-            created  => '' . $row->created,
-            modified => '' . $row->modified,
+            condition_id => $row->condition_id,
+            condition    => $row->condition,
+            created      => '' . $row->created,
+            modified     => '' . $row->modified,
         };
     }
 
@@ -36,10 +33,10 @@ sub condition {
     my ( $self, $name ) = @_;
     my $row  = $self->resultset->search(
         {
-            name => $name,
+            condition => $name,
         },
         {
-            order_by => 'name'
+            order_by => 'condition'
         }
     );
     $row = $row->first;

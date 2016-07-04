@@ -1,6 +1,7 @@
 package Chiro::Controller::Api::Condition;
 use Moose;
 use namespace::autoclean;
+use Chiro::API;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
@@ -24,7 +25,12 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched Chiro::Controller::Api::Condition in Api::Condition.');
+    my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
+    my $json = $condition->conditions();
+
+    $c->stash({data => $json});
+
+    return $c->forward('View::JSON');
 }
 
 
