@@ -2,7 +2,7 @@ package Chiro::View::JSON;
 use Moose;
 use namespace::autoclean;
 
-extends 'Catalyst::View';
+extends 'Catalyst::View::JSON';
 
 =head1 NAME
 
