@@ -1,6 +1,7 @@
 package Chiro;
 use Moose;
 use namespace::autoclean;
+use Log::Log4perl::Catalyst;
 
 use Catalyst::Runtime 5.80;
 
@@ -40,7 +41,17 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1, # Send X-Catalyst header
+    'Plugin::Static::Simple' => {
+        ignore_extensions => [ qw// ],
+    },
+    'View::JSON' => {
+        allow_callback  => 1,    # defaults to 0
+        callback_param  => 'callback', # defaults to 'callback'
+        #expose_stash    => [ qw(data) ], # defaults to everything
+    },
 );
+
+__PACKAGE__->log(Log::Log4perl::Catalyst->new('log4perl.conf'));
 
 # Start the application
 __PACKAGE__->setup();
