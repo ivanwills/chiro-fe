@@ -36,3 +36,4 @@ platforms/*
 plugins/*
 MapSource/*
 hooks/*
+log/*
