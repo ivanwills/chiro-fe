@@ -1,5 +1,5 @@
 /* global Ractive */
 Ractive.extend({
-	template: Ractive.defaults.templates['chiro-condition'],
-	isolated: true
+    template: Ractive.defaults.templates['chiro-condition'],
+    isolated: true
 });
