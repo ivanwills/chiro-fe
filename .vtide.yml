@@ -26,6 +26,28 @@ terminals:
     restart: 1
     wait: 0
     command: node --version && gulp
+  7:
+    edit:
+      - base
+      - chiro-search
+      - chiro-condition
+  8:
+    edit:
+      - chiro-header
+      - chiro-user
+      - chiro-footer
+#  9:
+#    edit:
+#  10:
+#    edit:
+  12:
+    split: h
+  12a:
+    restart: bash
+    default: r
+    restart: 1
+    wait: 0
+    command: tailt -c log4perl log/chiro.log
 editor:
   helper: |
     sub {
