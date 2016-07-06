@@ -2,6 +2,12 @@
 Ractive.extend({
     template: Ractive.defaults.templates['chiro-search'],
     isolated: true,
+    oninit: function () {
+        var value = this.get('value');
+        if (!value) {
+            this.set('value', localStorage.getItem('condition'));
+        }
+    },
     onrender: function() {
         this.on('search', function (e) {
             var value  = this.get('value'),
@@ -14,9 +20,9 @@ Ractive.extend({
 
             this.set('search', value);
 
-            if (e.original === 'blur') {
-                this.fire('condition', value);
-            }
+            console.log(e.original);
+            localStorage.setItem('condition', value);
+            this.fire('condition', value);
         }.bind(this));
     }
 });

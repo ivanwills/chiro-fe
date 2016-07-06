@@ -15,8 +15,12 @@
 
     var ractive = new Ractive(options);
 
-    ractive.on('*.condition', function(evt) {
-        console.log(evt);
-    });
+    ractive.on('*.condition', function(condition) {
+        this.set('condition', condition)
+            .then(function() {
+                this.findComponent('chiro-condition')
+                    .set('condition', condition);
+            }.bind(this));
+    }.bind(ractive));
 
 })();
