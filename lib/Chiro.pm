@@ -43,6 +43,7 @@ __PACKAGE__->config(
     enable_catalyst_header => 1, # Send X-Catalyst header
     'Plugin::Static::Simple' => {
         ignore_extensions => [ qw// ],
+        include_path => [ qw/public/ ],
     },
     'View::JSON' => {
         allow_callback  => 1,    # defaults to 0

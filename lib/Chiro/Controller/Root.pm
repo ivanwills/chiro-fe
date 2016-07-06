@@ -1,6 +1,7 @@
 package Chiro::Controller::Root;
 use Moose;
 use namespace::autoclean;
+use Path::Tiny;
 
 BEGIN { extends 'Catalyst::Controller' }
 
@@ -32,7 +33,7 @@ sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
     # Hello World
-    $c->response->body( $c->welcome_message );
+    $c->response->body(scalar path(qw{public index.html})->slurp);
 }
 
 =head2 default
