@@ -63,6 +63,14 @@ editor:
       }
       return ();
     }
+  helper_autocomplete: |
+    sub {
+      my ($self) = @_;
+      my $dir = "src/components/*";
+      return map {m{/([^/]*)$}; $1}
+        grep {-d $_}
+        glob $dir;
+    }
   files:
     base:
       - src/index.html
