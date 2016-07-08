@@ -22,7 +22,7 @@ Catalyst Controller.
 
 =cut
 
-sub index :Path :Args(0) {
+sub conditions :Path('/api/conditions') {
     my ( $self, $c ) = @_;
 
     my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
@@ -33,7 +33,16 @@ sub index :Path :Args(0) {
     return $c->forward('View::JSON');
 }
 
+sub index : PathPart('name') CaptureArgs(1) {
+    my ( $self, $c, $name ) = @_;
 
+    my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
+    my $json = $condition->condition($name);
+
+    $c->stash({data => $json});
+
+    return $c->forward('View::JSON');
+}
 
 =encoding utf8
 
