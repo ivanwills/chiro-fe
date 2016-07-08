@@ -7,6 +7,15 @@ Ractive.extend({
             if (!newVal) {
                 return;
             }
+            console.log('fetching condition', newVal);
+            fetch(`/api/condition/${newVal}`)
+                .then( (r) => {
+                    console.log(r);
+                    return r.text();
+                })
+                .then( (j) => {
+                    console.log(j);
+                });
         }.bind(this));
     }
 });
