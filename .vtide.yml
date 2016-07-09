@@ -10,6 +10,8 @@ default:
   wait: 1
 name: chiro-fe
 terminals:
+  1:
+      split: HvV0
   1a:
     restart: bash
     default: r
@@ -21,6 +23,12 @@ terminals:
       - 3030
       - ./chiro.psgi
   1b:
+    restart: bash
+    default: r
+    restart: 1
+    wait: 0
+    command: tailt -c log4perl log/chiro.log
+  1c:
     restart: bash
     default: r
     restart: 1
