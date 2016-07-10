@@ -33,7 +33,7 @@ sub conditions :Path('/api/conditions') {
     return $c->forward('View::JSON');
 }
 
-sub index : PathPart('name') CaptureArgs(1) {
+sub index : Path('/api/condition') PathPart('name') CaptureArgs(1) {
     my ( $self, $c, $name ) = @_;
 
     my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
