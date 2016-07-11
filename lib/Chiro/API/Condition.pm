@@ -47,14 +47,10 @@ sub condition {
             name => $name || 'new',
         };
     }
+    use Data::Dumper qw/Dumper/;
+    Chiro->log->debug(Dumper {$row->get_columns});
 
-    my $json = {
-        %{ $row->json },
-        id       => $row->id,
-        name     => $row->name,
-        created  => '' . $row->created,
-        modified => '' . $row->modified,
-    };
+    my $json = {$row->get_columns};
 
     return $json;
 }
