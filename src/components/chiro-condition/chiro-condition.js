@@ -11,11 +11,12 @@ Ractive.extend({
             fetch(`/api/condition/${newVal}`)
                 .then( (r) => {
                     console.log(r);
-                    return r.text();
+                    return r.json();
                 })
-                .then( (j) => {
+                .then( function(j) {
                     console.log(j);
-                });
+                    this.set('data', j.data);
+                }.bind(this));
         }.bind(this));
     }
 });
