@@ -1,3 +1,10 @@
 .chiro-condition {
-	// TODO chiro-condition styling goes here.
+    label {
+        float: left;
+        width: 20%;
+    }
+    input {
+        float: left;
+        width: 75%;
+    }
 }
