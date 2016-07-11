@@ -25,7 +25,10 @@ Catalyst Controller.
 sub conditions :Path('/api/conditions') {
     my ( $self, $c ) = @_;
 
-    my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
+    my $condition = Chiro::API->new({
+        log => $c->log,
+        schema => $c->model('DB')
+    })->condition;
     my $json = $condition->conditions();
 
     $c->stash({data => $json});
@@ -36,10 +39,33 @@ sub conditions :Path('/api/conditions') {
 sub index : Path('/api/condition') PathPart('name') CaptureArgs(1) {
     my ( $self, $c, $name ) = @_;
 
-    my $condition = Chiro::API->new({ log => $c->log, schema => $c->model('DB') })->condition;
+    my $condition = Chiro::API->new({
+        log => $c->log,
+        schema => $c->model('DB')
+    })->condition;
     my $json = $condition->condition($name);
 
     $c->stash({data => $json});
+
+    return $c->forward('View::JSON');
+}
+
+sub save : Local {
+    my ( $self, $c ) = @_;
+
+    my $condition = Chiro::API->new({
+        log => $c->log,
+        schema => $c->model('DB')
+    })->condition;
+    my $status = $condition->save({
+        map {($_ => $c->request->params->{$_}->raw_data)}
+        keys %{$c->request->params}
+    });
+
+    $c->stash({
+        status => $status,
+        data => $condition->condition($c->request->params->{condition}->raw_data),
+    });
 
     return $c->forward('View::JSON');
 }

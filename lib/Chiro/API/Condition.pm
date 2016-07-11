@@ -7,6 +7,7 @@ use Carp;
 use English qw/ -no_match_vars /;
 use JSON::XS;
 use Types::Serialiser;
+use DateTime;
 
 extends 'Chiro::API';
 
@@ -53,6 +54,26 @@ sub condition {
     my $json = {$row->get_columns};
 
     return $json;
+}
+
+sub save {
+    my ( $self, $data ) = @_;
+
+    if ( $data->{condition_id} ) {
+        my $row  = $self->resultset->find( $data->{condition_id} );
+        for my $key (keys %$data) {
+            next if $key eq 'created' || $key eq 'modified';
+            $row->$key($data->{$key});
+        }
+        $row->modified(DateTime->now);
+        $row->update;
+        return 1;
+    }
+    else {
+        return 2;
+    }
+
+    return 0;
 }
 
 sub add {
