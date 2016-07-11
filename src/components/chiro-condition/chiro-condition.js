@@ -38,5 +38,24 @@ Ractive.extend({
                     this.set('data', j.data);
                 }.bind(this));
         }.bind(this));
+        this.on('save', this.save.bind(this));
+    },
+    save: function() {
+        let form = new FormData();
+        let data = this.get('data');
+        for (var k in data) {
+            if (data.hasOwnProperty(k)) {
+                form.append(k, data[k]);
+            }
+        }
+
+        fetch(`/api/condition/save`, {
+            method: 'POST',
+            body: form
+        })
+        .then( (r) => {
+            console.log(r);
+        });
+        console.log('save', this.get('data'), form);
     }
 });
