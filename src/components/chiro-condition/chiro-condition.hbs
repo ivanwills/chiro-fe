@@ -1,17 +1,12 @@
 <div class="chiro-condition">
     <fieldset>
         <legend>Condition</legend>
+        <input type="hidden" name="condition_id" value="{{data.condition_id}}" />
+        {{#each fields}}
         <div>
-            <label for="condition">Condition</label>
-            <input type="text" name="condition" value="{{data.condition}}" />
+            <label for="{{.field}}">{{.label}}</label>
+            <input type="text" name="{{.field}}" value="{{data[.field]}}" />
         </div>
-        <div>
-            <label for="condition_desc">Description</label>
-            <input type="text" name="condition_desc" value="{{data.condition_desc}}" />
-        </div>
-        <div>
-            <label for="condition_description_source">Description Source</label>
-            <input type="text" name="condition_description_source" value="{{data.condition_description_source}}" />
-        </div>
+        {{/each}}
     </fieldset>
 </div>
