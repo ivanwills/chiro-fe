@@ -50,12 +50,6 @@ terminals:
 #    edit:
   12:
     split: h
-  12a:
-    restart: bash
-    default: r
-    restart: 1
-    wait: 0
-    command: tailt -c log4perl log/chiro.log
 editor:
   helper: |
     sub {
