@@ -2,10 +2,10 @@
 count: 12
 default:
   env:
-    MANPATH: /home/ivan/.nvm/versions/v0.12.7/share/man:/home/ivan/.nvm/versions/v0.12.7/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man:/home/ivan/.rvm/man
-    NVM_BIN: /home/ivan/.nvm/versions/v0.12.7/bin
-    NVM_PATH: /home/ivan/.nvm/versions/v0.12.7/lib/node
-    PATH: /home/ivan/.nvm/versions/v0.12.7/bin:./node_modules/.bin:$PATH
+    MANPATH: /home/ivan/.nvm/versions/v4.2.6/share/man:/home/ivan/.nvm/versions/v4.2.6/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man:/home/ivan/.rvm/man
+    NVM_BIN: /home/ivan/.nvm/versions/v4.2.6/bin
+    NVM_PATH: /home/ivan/.nvm/versions/v4.2.6/lib/node
+    PATH: /home/ivan/.nvm/versions/v4.2.6/bin:./node_modules/.bin:$PATH
   restart: 0
   wait: 1
 name: chiro-fe
