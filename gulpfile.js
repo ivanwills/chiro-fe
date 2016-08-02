@@ -305,7 +305,7 @@ gulp.task('build', ['clean'], function (callback) {
 		'sass',
 		'build-test-templates',
 		'build-plugins',
-		'parse-partials',
+		'build-partials',
 		'build-components',
 		'build-documentation'
 	], [
