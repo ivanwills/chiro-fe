@@ -1,22 +1,23 @@
-var fs = require('fs'),
-	gulp = require('gulp'),
-	gutil = require('gulp-util'),
-	plugins = require('gulp-load-plugins')(),
-	del = require('del'),
-	glob = require('simple-glob'),
-	path = require('path'),
-	mergeStream = require('merge-stream'),
-	jscs = require('gulp-jscs'),
-	runSequence = require('run-sequence'),
-	ractiveParse = require('./node_modules/ractive-foundation/tasks/ractiveParse'),
-	seleniumServer = require('./node_modules/ractive-foundation/tasks/seleniumServer'),
-	rfCucumber = require('./node_modules/ractive-foundation/tasks/rfCucumber'),
+var fs                  = require('fs'),
+	grf                 = require('gulp-ractive-foundation')(),
+	gulp                = require('gulp'),
+	gutil               = require('gulp-util'),
+	plugins             = require('gulp-load-plugins')(),
+	del                 = require('del'),
+	glob                = require('simple-glob'),
+	path                = require('path'),
+	mergeStream         = require('merge-stream'),
+	jscs                = require('gulp-jscs'),
+	runSequence         = require('run-sequence'),
+	ractiveParse        = require('./node_modules/ractive-foundation/tasks/ractiveParse'),
+	seleniumServer      = require('./node_modules/ractive-foundation/tasks/seleniumServer'),
+	rfCucumber          = require('./node_modules/ractive-foundation/tasks/rfCucumber'),
 	renderDocumentation = require('./node_modules/ractive-foundation/tasks/renderDocumentation'),
-	concatManifests = require('./node_modules/ractive-foundation/tasks/concatManifests'),
-	jshintFailReporter = require('./node_modules/ractive-foundation/tasks/jshintFailReporter'),
-	rfA11y = require('./node_modules/ractive-foundation/tasks/rfA11y'),
+	concatManifests     = require('./node_modules/ractive-foundation/tasks/concatManifests'),
+	jshintFailReporter  = require('./node_modules/ractive-foundation/tasks/jshintFailReporter'),
+	rfA11y              = require('./node_modules/ractive-foundation/tasks/rfA11y'),
 
-	pkg = require('./package.json');
+	pkg                 = require('./package.json');
 
 // All config information is stored in the .yo-rc.json file so that yeoman can
 // also get to this information
@@ -142,35 +143,17 @@ gulp.task('copy', function () {
 	);
 });
 
-gulp.task('parse-partials', function () {
-	var sourcemaps = plugins.sourcemaps;
-
-	return gulp.src(config.globs.partials)
-		.pipe(sourcemaps.init())
-		.pipe(ractiveParse({
-			template: true,
-			prefix: 'Ractive.partials',
-			objectName : function(file) {
-				return file.history[0].split(path.sep).slice(-1)[0].replace(/[.]hbs$/, '');
-			}
+gulp.task('build-partials', function () {
+	return gulp.src([
+			'**/*.hbs'
+		], { cwd: 'src/partials/' })
+		.pipe(plugins.sourcemaps.init())
+		.pipe(grf.template({
+			type: 'partials'
 		}))
 		.pipe(plugins.concat('partials.js'))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.paths.compiled));
-});
-
-gulp.task('build-templates', function () {
-	var sourcemaps = plugins.sourcemaps;
-
-	return gulp.src(config.globs.componentsHbs)
-		.pipe(sourcemaps.init())
-		.pipe(ractiveParse({
-			template: true,
-			prefix: 'Ractive.defaults.templates'
-		}))
-		.pipe(plugins.concat('templates.js'))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.paths.compiled));
+		.pipe(plugins.sourcemaps.write())
+		.pipe(gulp.dest('public/compiled/'));
 });
 
 gulp.task('build-test-templates', function () {
@@ -187,17 +170,17 @@ gulp.task('build-test-templates', function () {
 		.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('build-components', ['build-templates', 'build-test-templates'], function (callback) {
-	var sourcemaps = plugins.sourcemaps;
-
-	return gulp.src(config.globs.componentsJs)
-		.pipe(sourcemaps.init())
-		.pipe(ractiveParse({
-			'prefix': 'Ractive.components'
-		}))
+gulp.task('build-components', ['build-test-templates'], function () {
+	return gulp.src([
+			'src/components/**/*',
+		])
+		.pipe(grf.filter(/src\/components\/([^\/]+)/))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(grf.component())
+		.pipe(gulp.dest('public/components/'))
 		.pipe(plugins.concat('components.js'))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.paths.compiled));
+		.pipe(plugins.sourcemaps.write())
+		.pipe(gulp.dest('public/compiled/'));
 });
 
 gulp.task('build-plugins', function () {
@@ -210,6 +193,19 @@ gulp.task('build-plugins', function () {
 		}))
 		.pipe(plugins.concat('plugins.js'))
 		.pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('build-plugins', function () {
+	return gulp.src([
+			'src/plugins/**/*',
+			'node_modules/ractive-foundation/src/plugins/*/manifest.json'
+		])
+		.pipe(grf.filter(/src\/plugins\/([^\/]+)/))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(grf.plugin())
+		.pipe(plugins.concat('js'))
+		.pipe(plugins.sourcemaps.write())
+		.pipe(gulp.dest('public/compiled/'));
 });
 
 gulp.task('build-documentation', function () {
@@ -339,20 +335,6 @@ gulp.task('watch', function () {
 			self.emit('end');
 		});
 	});
-});
-
-gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
-
-	rfA11y.auditComponents({ port: A11Y_SERVER_PORT })
-		.then(function () {
-			callback();
-			process.exit(0);
-		})
-		.catch(function (error) {
-			callback(new Error(error));
-			process.exit(1);
-		});
-
 });
 
 // Run the test suite alone, without re-building the project. Useful for rapid test debugging.

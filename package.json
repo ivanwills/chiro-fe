@@ -33,6 +33,7 @@
     "gulp-load-plugins": "^1.0.0",
     "gulp-mocha": "^2.1.3",
     "gulp-open": "^1.0.0",
+    "gulp-ractive-foundation": "git+https://github.com/ivanwills/gulp-ractive-foundation.git",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
