@@ -303,7 +303,6 @@ gulp.task('a11y-only', [ 'a11y-connect' ], function (callback) {
 gulp.task('build', ['clean'], function (callback) {
 	runSequence([
 		'sass',
-		'build-templates',
 		'build-test-templates',
 		'build-plugins',
 		'parse-partials',
