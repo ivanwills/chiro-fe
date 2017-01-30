@@ -209,7 +209,6 @@ gulp.task('build-plugins', function () {
 });
 
 gulp.task('build-documentation', function () {
-
 	var headerHtml = fs.readFileSync('./src/header.html'),
 		footerHtml = fs.readFileSync('./src/footer.html');
 
@@ -249,7 +248,18 @@ gulp.task('build-documentation', function () {
 			.pipe(gulp.dest('./public/'))
 
 	);
+});
 
+gulp.task('build-documentation-components', function () {
+	return gulp.src([
+			'src/components/**/*',
+		])
+		.pipe(grf.filter(/src\/components\/([^\/]+)/))
+		.pipe(grf.documentation({
+			partials: 'src/',
+			template: 'src/component.html'
+		}))
+		.pipe(gulp.dest('public/components'));
 });
 
 gulp.task('server', function (callback) {
